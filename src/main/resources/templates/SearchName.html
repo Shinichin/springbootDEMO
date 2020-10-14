@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container"><!--提交表单-->
+<p class="lead">SearchPage</p>
+<form action="/test/seachUser" method="post" class="form-horizontal">
+
+    <input type="text" class="form-control" name="name" placeholder="name"/>
+    <input type="submit" class="btn btn-info" placeholder="search"/>
+</form>
+
+<p><br/></p>
+
+<table class="table"><!--接收List,显示结果-->
+    <tr>
+        <th>name</th>
+        <th>sex</th>
+    </tr>
+    <tr th:each="user:${USER}">
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.sex}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+# 服务端口号
+server:
+  port: 8068
+url:
+  # 订单微服务的地址
+  orderUrl: http://localhost:8002
+  # 用户微服务的地址
+  userUrl: http://localhost:8003
+  # 购物车微服务的地址
+  shoppingUrl: http://localhost:8004
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+
+#指定mybatis映射文件的地址
+mybatis:
+  # mybatis自动扫描包中的实体类，自动定义别名，别名是类名(首字母大写或小写都可以,一般用小写)
+  typeAliasesPackage: com.example.demo.entity
+  #配置文件的路径
+  #config-location: classpath:mybatis-config.x
+  mapperLocations: classpath:mapper/*.xml
+
+---
+#开发配置
+spring:
+  profiles:
+    active: -dev
+
+  #配置数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: psd10086!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: false
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false #关闭缓存
+    check-template: true
+    check-template-location: true
+      #开启MVC thymeleaf 视图解析
+    enabled: true
+    encoding: utf-8
+    mode: HTML
+
+logging:
+  level:
+    root: info
+    com.itcodai.course03.dao: trace
